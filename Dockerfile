@@ -21,14 +21,7 @@ RUN apk update --quiet && \
     apk add --quiet --no-cache ${RUNTIME_DEPS} && \
     apk add --quiet --no-cache --virtual build-dependencies ${BUILD_DEPS} && \
     cp /usr/bin/envsubst /usr/local/bin/envsubst && \
-    curl -Ov https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
-    curl -Os https://keybase.io/hashicorp/key.asc | gpg --import && \
-    curl -Ov https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
-    curl -Os https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_SHA256SUMS && \
-    curl -Os https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_SHA256SUMS.sig && \
-    gpg --verify terraform_${TERRAFORM_VERSION}_SHA256SUMS.sig terraform_${TERRAFORM_VERSION}_SHA256SUMS && \
-    sed -i "/terraform_${TERRAFORM_VERSION}_linux_amd64.zip/!d" terraform_${TERRAFORM_VERSION}_SHA256SUMS && \
-    sha256sum -c terraform_${TERRAFORM_VERSION}_SHA256SUMS && \
+    curl -Os https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
     unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
     mv terraform /usr/local/bin/terraform && \
     chmod +x /usr/local/bin/terraform && \
