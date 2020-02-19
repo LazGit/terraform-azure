@@ -33,8 +33,8 @@ RUN apk update --quiet && \
     mv linux-amd64/helm /usr/local/bin/helm && \
     chmod +x /usr/local/bin/helm && \
     rm -rf helm-${HELM_VERSION}-linux-amd64.tar.gz linux-amd64 && \
-    pip3 --upgrade install pip && \
-    pip3 --upgrade install azure-cli==${AZURE_CLI_VERSION} && \
+    pip3 install --upgrade pip && \
+    pip3 install --upgrade azure-cli==${AZURE_CLI_VERSION} && \
     mkdir -p ${TF_PLUGIN_CACHE_DIR}/linux_amd64  && \
     cd /tmp && \
     terraform init && \ 
